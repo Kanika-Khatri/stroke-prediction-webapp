@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NeuroRisk · Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#060b14;--card:#111d30;--border:rgba(88,166,255,.12);--accent:#4da8ff;--accent2:#7c5cbf;--green:#2dba6b;--red:#f05252;--yellow:#f59e0b;--text:#e2eaf6;--muted:#64748b;--mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(77,168,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(77,168,255,.03) 1px,transparent 1px);background-size:40px 40px;}
+.blob{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.blob-1{width:500px;height:500px;background:rgba(77,168,255,.07);top:-100px;left:-100px;}
+.blob-2{width:400px;height:400px;background:rgba(124,92,191,.07);bottom:-80px;right:-80px;}
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px;}
+header{padding:20px 0 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-text{font-family:var(--mono);font-size:18px;font-weight:700;background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.logo-sub{font-size:11px;color:var(--muted);}
+nav a{font-family:var(--mono);font-size:12px;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:6px;border:1px solid transparent;transition:.2s;margin-left:8px;}
+nav a:hover,nav a.active{color:var(--accent);border-color:var(--border);background:rgba(77,168,255,.06);}
+h2{font-size:32px;font-weight:300;margin:40px 0 8px;background:linear-gradient(135deg,var(--text),rgba(226,234,246,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
+.section-title{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+@media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
+.chart-img{width:100%;border-radius:10px;display:block;}
+.metrics-table{width:100%;border-collapse:collapse;}
+.metrics-table th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);}
+.metrics-table td{padding:12px 14px;border-bottom:1px solid rgba(88,166,255,.06);font-size:13px;}
+.metrics-table tr:last-child td{border-bottom:none;}
+.metrics-table tr.best td{color:var(--accent);}
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px;}
+.badge-best{background:rgba(77,168,255,.15);color:var(--accent);border:1px solid rgba(77,168,255,.3);}
+.bar{height:6px;border-radius:3px;background:var(--border);margin-top:4px;}
+.bar-fill{height:100%;border-radius:3px;}
+footer{border-top:1px solid var(--border);padding:20px 0;margin-top:60px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-family:var(--mono);flex-wrap:wrap;gap:8px;}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🧠</div>
+      <div>
+        <div class="logo-text">NeuroRisk</div>
+        <div class="logo-sub">Stroke Prediction Intelligence</div>
+      </div>
+    </div>
+    <nav>
+      <a href="/">Predict</a>
+      <a href="/analytics" class="active">Analytics</a>
+    </nav>
+  </header>
+
+  <h2>Model Analytics</h2>
+  <p class="page-sub">Training results, performance metrics, and feature analysis across all 4 ML models.</p>
+
+  <div class="chart-grid">
+    <div class="card">
+      <div class="section-title">Model Comparison</div>
+      <img class="chart-img" src="/static/img/model_comparison.png" alt="Model Comparison"/>
+    </div>
+    <div class="card">
+      <div class="section-title">ROC Curves</div>
+      <img class="chart-img" src="/static/img/roc_curves.png" alt="ROC Curves"/>
+    </div>
+    <div class="card">
+      <div class="section-title">Feature Importances</div>
+      <img class="chart-img" src="/static/img/feature_importance.png" alt="Feature Importances"/>
+    </div>
+    <div class="card">
+      <div class="section-title">Class Distribution</div>
+      <img class="chart-img" src="/static/img/class_dist.png" alt="Class Distribution"/>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Detailed Metrics</div>
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Recall &#x2191;</th>
+          <th>Precision</th>
+          <th>F1 Score</th>
+          <th>AUC-ROC</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for name, r in results.items() %}
+        <tr {% if name == best_name %}class="best"{% endif %}>
+          <td><strong>{{ name }}</strong></td>
+          <td>
+            {{ "%.1f"|format(r.recall*100) }}%
+            <div class="bar"><div class="bar-fill" style="width:{{ r.recall*100 }}%;background:{% if r.recall>0.85 %}#2dba6b{% elif r.recall>0.7 %}#f59e0b{% else %}#f05252{% endif %};"></div></div>
+          </td>
+          <td>{{ "%.1f"|format(r.precision*100) }}%</td>
+          <td>{{ "%.1f"|format(r.f1*100) }}%</td>
+          <td>{{ "%.3f"|format(r.auc) }}</td>
+          <td>{% if name == best_name %}<span class="badge badge-best">BEST</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Methodology Notes</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:13px;color:var(--muted);line-height:1.7;">
+      <div>
+        <p style="color:var(--text);font-weight:500;margin-bottom:6px;">Class Imbalance Handling</p>
+        <p>Used <code style="color:var(--accent);font-family:var(--mono)">class_weight="balanced"</code> on applicable models and lowered the classification threshold to 0.30 to maximize Recall and minimize false negatives in critical diagnoses.</p>
+      </div>
+      <div>
+        <p style="color:var(--text);font-weight:500;margin-bottom:6px;">Hyperparameter Tuning</p>
+        <p>Models were configured with tuned hyperparameters: max_depth, n_estimators, learning_rate, C, and gamma — prioritizing Recall over Precision for clinical safety.</p>
+      </div>
+      <div>
+        <p style="color:var(--text);font-weight:500;margin-bottom:6px;">Features Used</p>
+        <p>Gender, Age, BMI, Avg Glucose, Hypertension, Heart Disease, Ever Married, Work Type, Residence Type, Smoking Status.</p>
+      </div>
+      <div>
+        <p style="color:var(--text);font-weight:500;margin-bottom:6px;">Evaluation Priority</p>
+        <p>Recall is prioritized over Precision. A false negative (missed stroke) is far more costly than a false positive in clinical settings.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>NeuroRisk &middot; Python + Flask + Scikit-learn</span>
+    <span>&#x26A0; Research only</span>
+  </footer>
+</div>
+</body>
+</html>

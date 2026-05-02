@@ -1,0 +1,66 @@
+{
+  "Decision Tree": {
+    "recall": 0.74,
+    "precision": 0.0932,
+    "f1": 0.1655,
+    "auc": 0.763,
+    "confusion_matrix": [
+      [
+        612,
+        360
+      ],
+      [
+        13,
+        37
+      ]
+    ]
+  },
+  "Random Forest": {
+    "recall": 0.84,
+    "precision": 0.1071,
+    "f1": 0.19,
+    "auc": 0.8269,
+    "confusion_matrix": [
+      [
+        622,
+        350
+      ],
+      [
+        8,
+        42
+      ]
+    ]
+  },
+  "SVC": {
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "auc": 0.7785,
+    "confusion_matrix": [
+      [
+        971,
+        1
+      ],
+      [
+        50,
+        0
+      ]
+    ]
+  },
+  "Gradient Boosting": {
+    "recall": 0.12,
+    "precision": 0.1538,
+    "f1": 0.1348,
+    "auc": 0.7863,
+    "confusion_matrix": [
+      [
+        939,
+        33
+      ],
+      [
+        44,
+        6
+      ]
+    ]
+  }
+}
