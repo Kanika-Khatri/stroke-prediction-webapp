@@ -137,7 +137,7 @@ In clinical ML, **missing a positive case costs more than a false alarm.** Recal
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/stroke-prediction-webapp.git
+git clone https://github.com/Kanika-Khatri/stroke-prediction-webapp.git
 cd stroke-prediction-webapp
 ```
 
